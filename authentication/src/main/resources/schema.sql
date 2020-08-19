@@ -1,0 +1,28 @@
+CREATE TABLE IF NOT EXISTS users (
+  id INTEGER AUTO_INCREMENT,
+  user_id VARCHAR(250) NOT NULL,
+  password VARCHAR(250) NOT NULL,
+  first_name VARCHAR(250) NOT NULL,
+  last_name VARCHAR(250) NOT NULL,
+  is_first_login BIT(1) DEFAULT 1,
+  primary key(id)
+  
+);
+
+CREATE TABLE IF NOT EXISTS roles (
+	id INTEGER AUTO_INCREMENT,
+  	role VARCHAR(250) NOT NULL,
+  	primary key(id)
+);
+
+CREATE TABLE IF NOT EXISTS users_roles(
+id INTEGER AUTO_INCREMENT, 
+user_id INTEGER NOT NULL,
+role_id INTEGER NOT NULL,
+
+primary key(id),
+
+CONSTRAINT FK_USER_ROLE_USER FOREIGN KEY (user_id) REFERENCES users(id),
+CONSTRAINT FK_USER_ROLE_ROLE FOREIGN KEY (role_id) REFERENCES roles(id)
+
+);
